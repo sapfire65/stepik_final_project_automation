@@ -11,10 +11,17 @@ link_2 = '/catalogue/coders-at-work_207/'
 
 def test_button_add_product(browser):
     browser.get(f'{link}{link_2}')
+    # time.sleep(30)
     # Явное ожидание кнопки добавления
     button = WebDriverWait(browser, 20).until(
         EC.element_to_be_clickable((By.XPATH, '//button[@class="btn btn-lg btn-primary btn-add-to-basket"]')))
-    button.click()
+
+    # Проверка наличия кнопки по значению атрибута 'type'
+    check_atribut = button.get_attribute('type')
+    assert str(check_atribut) == 'submit', '\nКнопка добавления, не обнаружена'
+
+
+
 
 
 
