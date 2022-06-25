@@ -1,0 +1,43 @@
+Index: conftest.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/conftest.py b/conftest.py
+--- a/conftest.py	(revision 4ebebab7efe4f97ed8c033f09e74caf84500df61)
++++ b/conftest.py	(revision 3668bc7bd0bdb16f886200981b8696eaf0804b4a)
+@@ -35,6 +35,7 @@
+         raise pytest.UsageError("--browser_name should be chrome or firefox")
+     yield browser
+     print("\nquit browser..")
++    time.sleep(0)
+ 
+     browser.quit()
+ 
+Index: test_items.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/test_items.py b/test_items.py
+--- a/test_items.py	(revision 4ebebab7efe4f97ed8c033f09e74caf84500df61)
++++ b/test_items.py	(revision 3668bc7bd0bdb16f886200981b8696eaf0804b4a)
+@@ -11,10 +11,17 @@
+ 
+ def test_button_add_product(browser):
+     browser.get(f'{link}{link_2}')
++    # time.sleep(30)
+     # Явное ожидание кнопки добавления
+     button = WebDriverWait(browser, 20).until(
+         EC.element_to_be_clickable((By.XPATH, '//button[@class="btn btn-lg btn-primary btn-add-to-basket"]')))
+-    button.click()
++
++    # Проверка наличия кнопки по значению атрибута 'type'
++    check_atribut = button.get_attribute('type')
++    assert str(check_atribut) == 'submit', '\nКнопка добавления, не обнаружена'
++
++
++
+ 
+ 
+ 
