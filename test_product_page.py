@@ -1,4 +1,3 @@
-import time
 from .pages.product_page import ProductPage
 
 # Переходим на страницу с товаром
@@ -8,8 +7,10 @@ def test_guest_add_to_basket(browser):
     page.open()
     page.go_to_button_add_book()
     page.solve_quiz_and_get_code()
+    page.checking_button_checkout() # Проверка появления кнопки Оформить
     page.checking_book_added_to_cart_price() # Проверка соответствия цены на складе и в корзине
     page.checking_book_added_to_cart_name() # Проверка соответствия имени товара на складе и в корзине
+
 
 
 
