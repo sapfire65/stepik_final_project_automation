@@ -9,3 +9,5 @@ class LoginPageLocators():
     INPUT_PASSWORD = (By.XPATH, '//input[@name="login-password"]')
     REGISTER_FORM = (By.XPATH, '//form[@id="register_form"]')
 
+
+
