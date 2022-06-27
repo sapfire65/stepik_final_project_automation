@@ -9,5 +9,8 @@ class LoginPageLocators():
     INPUT_PASSWORD = (By.XPATH, '//input[@name="login-password"]')
     REGISTER_FORM = (By.XPATH, '//form[@id="register_form"]')
 
+class ProductPageLocators():
+    ADD_BOOK_BUTTON = (By.XPATH, '//button[@class="btn btn-lg btn-primary btn-add-to-basket"]')
+
 
 

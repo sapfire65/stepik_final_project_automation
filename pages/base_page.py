@@ -1,3 +1,4 @@
+import math
 from selenium import webdriver
 from selenium.webdriver import Remote as RemoteWebDriver
 
@@ -11,6 +12,9 @@ class BasePage():
     # Создаем метод открытия и перехода по ссылке page.open()
     def open(self):
         self.browser.get(self.url)
+
+
+
 
 
 
