@@ -12,6 +12,7 @@ class ProductPage(BasePage):
         button_add_book.click()
 
     def solve_quiz_and_get_code(self):
+        time.sleep(1)
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
         answer = str(math.log(abs((12 * math.sin(float(x))))))

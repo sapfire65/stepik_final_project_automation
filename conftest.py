@@ -21,6 +21,10 @@ def browser(request):
         # Чтобы указать язык браузера, использую класс Options и метод add_experimental_option
         # Для Chrome браузера
         options = Options()
+        # // Отключение сообщений в консоли типа: USB: usb_device_handle...
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        # //
+
         options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
         browser = webdriver.Chrome(options=options)
         browser.implicitly_wait(10) # Не явное ожидание элементов 10 сек.
