@@ -4,6 +4,7 @@ from .base_page import BasePage
 from .locators import ProductPageLocators
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 import time
 import math
 
@@ -14,23 +15,26 @@ class ProductPage(BasePage):
         button_add_book.click()
 
 
-
     def solve_quiz_and_get_code(self):
+        WebDriverWait(self.browser, 5).until(EC.alert_is_present()) # Явное ожидание алерта
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
         answer = str(math.log(abs((12 * math.sin(float(x))))))
         alert.send_keys(answer)
         alert.accept()
+        # time.sleep(2)
+
         try:
-            time.sleep(2)
+            WebDriverWait(self.browser, 5).until(EC.alert_is_present()) # Явное ожидание алерта
             alert = self.browser.switch_to.alert
             alert_text = alert.text
             print(f"Your code: {alert_text}")
             alert.accept()
 
-            # time.sleep(50000)
-        except NoAlertPresentException:
+        except (NoAlertPresentException, TimeoutException):
             print("No second alert presented")
+
+
 
     def checking_button_checkout(self):
         # Проверка появления кнопки Оформить
@@ -43,7 +47,6 @@ class ProductPage(BasePage):
         stock_price_book = self.browser.find_element(By.XPATH, '//p[@class="price_color"]').text
         print(f'Price book, stock / added: - {stock_price_book} / {price_in_the_cart}')
         assert price_in_the_cart == stock_price_book, 'The PRICE of the book in stock is different from the price in the cart'
-
 
 
     def checking_book_added_to_cart_name(self):
