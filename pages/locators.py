@@ -11,6 +11,8 @@ class LoginPageLocators():
 
 class ProductPageLocators():
     ADD_BOOK_BUTTON = (By.XPATH, '//button[@class="btn btn-lg btn-primary btn-add-to-basket"]')
+    CHECK_BUTTON_CLICKABILITY = '(//a[@class="btn btn-info"])[1]'
+
 
 
 

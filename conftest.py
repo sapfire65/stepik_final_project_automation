@@ -9,21 +9,27 @@ def pytest_addoption(parser):
                      help="Choose browser: chrome or firefox")
     parser.addoption('--language', action='store', default='en',
                      help="Choose language: 'ru' or 'en'")
+    parser.addoption('--headless', action='store', default='None',
+                     help="Open a browser invisible, without GUI is used by default")
 
 @pytest.fixture(scope="function")
 def browser(request):
     # переменные user_language и browser_name передаются из консоли
     user_language = request.config.getoption("language")
     browser_name = request.config.getoption("browser_name")
+    headless = request.config.getoption('headless')
     browser = ''
     if browser_name == "chrome":
         print("\nstart chrome browser for test..")
         # Чтобы указать язык браузера, использую класс Options и метод add_experimental_option
         # Для Chrome браузера
         options = Options()
+        if headless == 'true':
+            options.add_argument('headless')
+
+
         # // Отключение сообщений в консоли типа: USB: usb_device_handle...
         options.add_experimental_option('excludeSwitches', ['enable-logging'])
-        # //
 
         options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
         browser = webdriver.Chrome(options=options)

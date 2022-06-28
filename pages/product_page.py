@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import time
 import math
+import pytest
 
 class ProductPage(BasePage):
     # Добавить в карзину книгу
@@ -16,16 +17,15 @@ class ProductPage(BasePage):
 
 
     def solve_quiz_and_get_code(self):
-        WebDriverWait(self.browser, 5).until(EC.alert_is_present()) # Явное ожидание алерта
+        WebDriverWait(self.browser, 10).until(EC.alert_is_present()) # Явное ожидание алерта
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
         answer = str(math.log(abs((12 * math.sin(float(x))))))
         alert.send_keys(answer)
         alert.accept()
-        # time.sleep(2)
 
         try:
-            WebDriverWait(self.browser, 5).until(EC.alert_is_present()) # Явное ожидание алерта
+            WebDriverWait(self.browser, 10).until(EC.alert_is_present()) # Явное ожидание алерта
             alert = self.browser.switch_to.alert
             alert_text = alert.text
             print(f"Your code: {alert_text}")
@@ -33,7 +33,6 @@ class ProductPage(BasePage):
 
         except (NoAlertPresentException, TimeoutException):
             print("No second alert presented")
-
 
 
     def checking_button_checkout(self):
@@ -48,10 +47,13 @@ class ProductPage(BasePage):
         print(f'Price book, stock / added: - {stock_price_book} / {price_in_the_cart}')
         assert price_in_the_cart == stock_price_book, 'The PRICE of the book in stock is different from the price in the cart'
 
-
+    @pytest.mark.xfail
     def checking_book_added_to_cart_name(self):
         name_in_the_cart = self.browser.find_element(By.XPATH, '(//div[@class="alertinner "]/strong)[1]').text
         stock_name_book = self.browser.find_element(By.XPATH, '//h1').text
         print(f'Name book, stock / added: - {stock_name_book} / {name_in_the_cart}')
         assert stock_name_book == name_in_the_cart, 'The NAME of the book in stock is different from the price in the cart'
 
+    def output_current_link(self):
+        name_current_link = self.browser.current_url
+        print(f'Текущая страница: - {name_current_link}')
