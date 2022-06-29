@@ -1,9 +1,9 @@
 import pytest
-import time
 import os
+import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.firefox.options import Options
+# from selenium.webdriver.firefox.options import Options
 
 # получает значения из консоли для --browser_name= и --language=
 def pytest_addoption(parser):
@@ -20,7 +20,7 @@ def browser(request):
     user_language = request.config.getoption("language")
     browser_name = request.config.getoption("browser_name")
     headless = request.config.getoption('headless')
-    browser = ''
+    # browser = ''
     if browser_name == "chrome":
         print("\nstart chrome browser for test..")
         # Чтобы указать язык браузера, использую класс Options и метод add_experimental_option
@@ -37,6 +37,7 @@ def browser(request):
         browser.implicitly_wait(10) # Не явное ожидание элементов 10 сек.
 
     elif browser_name == "firefox":
+
         print("\nstart firefox browser for test..")
         # Без браузерный режим для 'Firefox', через импорт библиотеки 'os'
         if headless == 'true':

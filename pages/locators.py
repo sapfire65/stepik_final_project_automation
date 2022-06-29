@@ -12,6 +12,10 @@ class LoginPageLocators():
 class ProductPageLocators():
     ADD_BOOK_BUTTON = (By.XPATH, '//button[@class="btn btn-lg btn-primary btn-add-to-basket"]')
     CHECK_BUTTON_CLICKABILITY = '(//a[@class="btn btn-info"])[1]'
+    PRICE_IN_THE_CART = '(//strong)[6]'
+    STOCK_PRICE_BOOK = '//p[@class="price_color"]'
+    NAME_IN_THE_CART = '(//div[@class="alertinner "]/strong)[1]'
+    STOCK_NAME_BOOK = '//h1'
 
 
 
