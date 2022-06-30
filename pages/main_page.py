@@ -6,6 +6,8 @@ from selenium.webdriver.common.by import By
 import time
 
 class MainPage(BasePage):
+    pass
+
     # Кликаем по ссылке логин / регистрация
     def go_to_login_page(self):
         login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
@@ -22,6 +24,10 @@ class MainPage(BasePage):
         except (NoSuchElementException):
             return False
         return True
+
+
+
+
 
 
 
