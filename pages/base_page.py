@@ -67,9 +67,3 @@ class BasePage():
 
 
 
-
-
-
-
-
-

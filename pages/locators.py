@@ -32,6 +32,3 @@ class ProductPageLocators():
     STOCK_NAME_BOOK = '//h1'
     SUCCESS_MESSAGE = (By.XPATH, '(//div[@class="alertinner "])[1]')
 
-
-
-

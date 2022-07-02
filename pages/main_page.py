@@ -12,8 +12,3 @@ class MainPage(BasePage):
 
 
 
-
-
-
-
-

@@ -18,4 +18,3 @@ class BasketPage(BasePage):
         assert 'content_inner' in text_cart_is_empty, 'Нет наличия элемента с текстом о пустой корзине'
 
 
-
