@@ -2,6 +2,7 @@ import time
 from .pages.main_page import BasePage
 from .pages.product_page import ProductPage
 from .pages.basket_page import BasketPage
+from .pages.login_page import LoginPage
 import pytest
 
 bugged_link = ['7']
@@ -34,10 +35,11 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page.test_guest_cant_see_success_message_after_adding_product_to_basket()
 
 @pytest.mark.xfail
-def test_guest_cant_see_success_message_after_adding_product_to_basket_2(browser):
+def test_guest_cant_see_success_message(browser):
     link = f'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer'
     page = ProductPage(browser, link)
     page.open()
+    page.go_to_button_add_book()
     page.test_guest_cant_see_success_message_after_adding_product_to_basket() # Проверка что нет 'сообщения об успехе' добавления в корзину.
 
 
@@ -73,6 +75,41 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page.guest_clik_button_see_basket()
     page.guest_the_go_to_checkout_button_is_not_showing_up()
     page.guest_there_is_a_text_that_the_cart_is_empty()
+
+@pytest.mark.reg
+class TestUserAddToBasketFromProductPage():
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        link = 'http://selenium1py.pythonanywhere.com/'
+        page = LoginPage(browser, link)
+        page.open()
+        page.go_to_login_page()
+        page.register_new_user()
+        page.should_be_authorized_user()
+
+    @pytest.mark.xfail
+    def test_user_cant_see_success_message(self, browser):
+        link = f'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer'
+        page = ProductPage(browser, link)
+        page.open()
+        page.go_to_button_add_book()
+        page.test_guest_cant_see_success_message_after_adding_product_to_basket()  # Проверка что нет 'сообщения об успехе' добавления в корзину.
+
+
+    # Переходим на страницу с товаром
+    def test_user_add_to_basket(self, browser):
+        link = f'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer'
+        page = ProductPage(browser, link)
+        page.open()
+        page.go_to_button_add_book()
+        page.solve_quiz_and_get_code()
+        page.checking_button_checkout()  # Проверка появления кнопки Оформить
+        page.checking_book_added_to_cart_price()  # Проверка соответствия цены на складе и в корзине
+        page.checking_book_added_to_cart_name()  # Проверка соответствия имени товара на складе и в корзине
+        page.output_current_link()
+
+
+
 
 
 

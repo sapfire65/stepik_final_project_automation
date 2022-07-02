@@ -1,7 +1,12 @@
 import time
+from mimesis import Person
+from mimesis.locales import Locale
+import pytest
 from .base_page import BasePage
 from .locators import LoginPageLocators
 from selenium.webdriver.common.by import By
+
+
 
 class LoginPage(BasePage):
     def should_be_login_page(self):
@@ -43,4 +48,21 @@ class LoginPage(BasePage):
         register_form = reg_form.get_attribute('id')
         print(f'attribut | id = {register_form}')
         assert 'register_form' in register_form, 'register form not found'
+
+
+    def register_new_user(self):
+        user_email_generator = Person(locale=Locale.EN).email()
+        user_password = Person(locale=Locale.EN).password(length=20)
+        registration_email = self.browser.find_element(*LoginPageLocators.EMAIL)
+        registration_email.send_keys(user_email_generator)
+        # first input
+        registration_password1 = self.browser.find_element(*LoginPageLocators.PASSWORD_1)
+        registration_password1.send_keys(user_password)
+        # last input
+        registration_password2 = self.browser.find_element(*LoginPageLocators.PASSWORD_2)
+        registration_password2.send_keys(user_password)
+        # button register
+        self.browser.find_element(*LoginPageLocators.CONFIRMATION_BUTTON_REGISTRATION).click()
+        time.sleep(1)
+
 
