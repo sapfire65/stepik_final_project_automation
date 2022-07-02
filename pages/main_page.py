@@ -5,13 +5,11 @@ from .login_page import LoginPage
 from selenium.webdriver.common.by import By
 import time
 
+
 class MainPage(BasePage):
     pass
 
-    # # Кликаем по ссылке логин / регистрация
-    # def go_to_login_page(self):
-    #     login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
-    #     login_link.click()
+
 
     # # Проверяем наличие ссылки на страницу логина.
     # def should_be_login_link(self):

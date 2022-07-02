@@ -1,0 +1,23 @@
+1656362890750	geckodriver	INFO	Listening on 127.0.0.1:12642
+1656362893795	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "12643" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\User\\AppData\\Local\\Temp\\rust_mozprofileTsQ5ia"
+1656362894286	Marionette	INFO	Marionette enabled
+WebDriver BiDi listening on ws://localhost:12643
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\User\\AppData\\Local\\Temp\\rust_mozprofileTsQ5ia\\search.json.mozlz4", (void 0)))
+1656362896590	Marionette	INFO	Listening on port 12664
+Read port: 12664
+1656362896617	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://localhost:12643/devtools/browser/181bc58b-0921-405b-8c9e-175e95a5db9a
+1656362899449	Marionette	INFO	Stopped listening on port 12664
+!!! error running onStopped callback: TypeError: callback is not a function
+[Parent 5156, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+1656364124825	geckodriver	INFO	Listening on 127.0.0.1:13123
+1656364127874	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "13124" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\User\\AppData\\Local\\Temp\\rust_mozprofileBQ74Bp"
+1656364128349	Marionette	INFO	Marionette enabled
+WebDriver BiDi listening on ws://localhost:13124
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\User\\AppData\\Local\\Temp\\rust_mozprofileBQ74Bp\\search.json.mozlz4", (void 0)))
+1656364130353	Marionette	INFO	Listening on port 13144
+DevTools listening on ws://localhost:13124/devtools/browser/1d626664-02db-4565-b8fb-01ccbd08871d
+Read port: 13144
+1656364130461	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1656364132696	Marionette	INFO	Stopped listening on port 13144
+!!! error running onStopped callback: TypeError: callback is not a function

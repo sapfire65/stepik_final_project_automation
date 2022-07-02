@@ -1,6 +1,7 @@
 import time
 from .pages.main_page import BasePage
 from .pages.product_page import ProductPage
+from .pages.basket_page import BasketPage
 import pytest
 
 bugged_link = ['7']
@@ -38,8 +39,8 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket_2(browser
     page = ProductPage(browser, link)
     page.open()
     page.test_guest_cant_see_success_message_after_adding_product_to_basket() # Проверка что нет 'сообщения об успехе' добавления в корзину.
-#
-#
+
+
 @pytest.mark.xfail
 def test_message_add_in_basket(browser):
     link = f'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer'
@@ -63,6 +64,15 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page = ProductPage(browser, link)
     page.open()
     page.go_to_login_page()
+
+# Проверка пустой корзины со страницы товара
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = 'http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/'
+    page = BasketPage(browser, link)
+    page.open()
+    page.guest_clik_button_see_basket()
+    page.guest_the_go_to_checkout_button_is_not_showing_up()
+    page.guest_there_is_a_text_that_the_cart_is_empty()
 
 
 

@@ -3,9 +3,8 @@ import os
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-# from selenium.webdriver.firefox.options import Options
 
-# получает значения из консоли для --browser_name= и --language=
+# получает значения из консоли
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default='chrome',
                      help="Choose browser: chrome or firefox")
@@ -16,7 +15,7 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope="function")
 def browser(request):
-    # переменные user_language и browser_name передаются из консоли
+    # Значения переменных user_language / browser_name / headless принимаются из консоли.
     user_language = request.config.getoption("language")
     browser_name = request.config.getoption("browser_name")
     headless = request.config.getoption('headless')
@@ -54,8 +53,11 @@ def browser(request):
         raise pytest.UsageError("--browser_name should be chrome or firefox")
     yield browser
     print("\nquit browser..")
-    time.sleep(0)
-
     browser.quit()
 
+
+# Supports console options (pytest):
+# --browser_name= (firefox or chrome)
+# --language=ru (default='en')
+# --headless=true (default='None')
 

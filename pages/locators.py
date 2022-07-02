@@ -2,8 +2,11 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators():
     LOGIN_LINK = (By.XPATH, '//a[@id="login_link"]')
-    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    BASKET_BUTTON = (By.XPATH, '//a[@class="btn btn-default"]')
 
+class BasketPageLocators():
+    BASKET_ORDERING = (By.XPATH, '//img[@class="thumbnail"]')
+    BASKET_TEXT_BASKET_IS_EMPTY = (By.XPATH, '//div[@id="content_inner"]')
 
 class MainPageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")

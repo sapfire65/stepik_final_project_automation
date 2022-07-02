@@ -12,8 +12,6 @@ class BasePage():
     def __init__(self, browser: RemoteWebDriver, url):
         self.browser = browser
         self.url = url
-
-
     # Создаем метод открытия и перехода по ссылке page.open()
     def open(self):
         self.browser.get(self.url)
@@ -23,7 +21,8 @@ class BasePage():
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), \
             "Login link is not presented"
 
-    # Если элемент найден возвращаем True, иначе перехватываем ошибку 'NoSuchElementException' и присваиваем False
+    # Если элемент найден возвращаем True, иначе -
+    # - перехватываем ошибку 'NoSuchElementException' и присваиваем False
     def is_element_present(self, how, what):
         try:
             self.browser.find_element(how, what)
@@ -35,6 +34,13 @@ class BasePage():
     def go_to_login_page(self):
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()
+
+    # Кликаем по кнопке 'посмотреть корзину'
+    def guest_clik_button_see_basket(self):
+        button_basket = self.browser.find_element(*BasePageLocators.BASKET_BUTTON)
+        text_atribut_button_basket = button_basket.get_attribute('href')
+        assert 'basket' in text_atribut_button_basket, 'No view cart button /  Нет кнопки - посмотреть корзину'
+        button_basket.click()
 
 
     # Метод проверки проверяет, что элемент не появляется на странице в течение времени.
@@ -53,6 +59,7 @@ class BasePage():
         except TimeoutException:
             return False
         return True
+
 
 
 
