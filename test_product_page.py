@@ -8,11 +8,12 @@ import pytest
 bugged_link = ['7']
 
 # Перечисляем номера. Маркируем пропуск плохого теста.
+@pytest.mark.need_review
 @pytest.mark.parametrize('number_url', ['0', '1', '2', '3', '4', '5', '6',
                                   pytest.param("bugged_link", marks=pytest.mark.xfail),
                                   '8', '9'])
 # Переходим на страницу с товаром
-def test_guest_add_to_basket(browser, number_url):
+def test_guest_can_add_product_to_basket(browser, number_url):
     link = f'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{str(number_url)}'
     page = ProductPage(browser, link)
     page.open()
@@ -60,7 +61,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.open()
     page.should_be_login_link()
 
-
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
@@ -68,6 +69,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page.go_to_login_page()
 
 # Проверка пустой корзины со страницы товара
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = 'http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/'
     page = BasketPage(browser, link)
@@ -97,7 +99,8 @@ class TestUserAddToBasketFromProductPage():
 
 
     # Переходим на страницу с товаром
-    def test_user_add_to_basket(self, browser):
+    @pytest.mark.need_review
+    def test_user_can_add_product_to_basket(self, browser):
         link = f'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer'
         page = ProductPage(browser, link)
         page.open()
