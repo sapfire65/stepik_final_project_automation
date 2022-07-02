@@ -7,7 +7,6 @@ from .locators import LoginPageLocators
 from selenium.webdriver.common.by import By
 
 
-
 class LoginPage(BasePage):
     def should_be_login_page(self):
         self.should_be_login_url()
@@ -15,13 +14,13 @@ class LoginPage(BasePage):
         self.should_be_password_form()
         self.should_be_register_form()
 
+
     def should_be_login_url(self):
         # находим и кликаем по ссылке логина
         self.browser.find_element(*LoginPageLocators.LOGIN_LINK).click()
         time.sleep(5)
         current_url_login = self.browser.current_url
         print(current_url_login)
-
         assert "/login" in current_url_login, "login is absent in current url"
 
 
@@ -34,7 +33,7 @@ class LoginPage(BasePage):
         assert  'login-username' in input_login_correct, 'input login not found'
 
     def should_be_password_form(self):
-        # реализуйте проверку, что есть форма регистрации на странице
+        # Проверка, что есть поля ввода, на странице регистрации
         self.browser.find_element(*LoginPageLocators.LOGIN_LINK).click()
         input_password = self.browser.find_element(*LoginPageLocators.INPUT_PASSWORD)
         input_password_correct = input_password.get_attribute('name')
@@ -49,7 +48,7 @@ class LoginPage(BasePage):
         print(f'attribut | id = {register_form}')
         assert 'register_form' in register_form, 'register form not found'
 
-
+    # Регистрация: - генерация нового пользователя с паролем
     def register_new_user(self):
         user_email_generator = Person(locale=Locale.EN).email()
         user_password = Person(locale=Locale.EN).password(length=20)

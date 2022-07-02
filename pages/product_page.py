@@ -63,7 +63,6 @@ class ProductPage(BasePage):
 
     # Проверяем, что нет сообщения об успехе, после добавления товара в корзину.
     # is_not_element_present - падет, как только увидит искомый элемент. Не появился: успех, тест зеленый.
-
     def test_guest_cant_see_success_message_after_adding_product_to_basket(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Success message is presented, but should not be / Сообщение об успехе отображается, но не должно"
@@ -71,7 +70,6 @@ class ProductPage(BasePage):
 
     # Проверяем, что нет сообщения об успехе,  добавления товара в корзину.
     # is_disappeared - будет ждать до тех пор, пока элемент не исчезнет.
-
     def test_message_disappeared_after_adding_product_to_basket(self):
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Есть сообщение об успехе, но оно не должно было появлятся"

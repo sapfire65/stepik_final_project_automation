@@ -37,17 +37,20 @@ def test_guest_should_be_login_form(browser):
     page.open()
     page.should_be_login_form()
 
+
 def test_guest_should_be_password_form(browser):
     link = "http://selenium1py.pythonanywhere.com/"
     page = LoginPage(browser, link)
     page.open()
     page.should_be_password_form()
 
+
 def test_guest_should_be_register_form(browser):
     link = "http://selenium1py.pythonanywhere.com/"
     page = LoginPage(browser, link)
     page.open()
     page.should_be_register_form()
+
 
 # Проверка пустой корзины с главной страницы
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
@@ -57,7 +60,6 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     page.guest_clik_button_see_basket() # Клик по кнопке корзины
     page.guest_the_go_to_checkout_button_is_not_showing_up() # Проверяю отсутствие картинки товара.
     page.guest_there_is_a_text_that_the_cart_is_empty() # Проверка наличия элемента с текстом о пустой корзине.
-
 
 
 

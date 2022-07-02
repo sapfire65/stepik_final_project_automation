@@ -19,7 +19,7 @@ def browser(request):
     user_language = request.config.getoption("language")
     browser_name = request.config.getoption("browser_name")
     headless = request.config.getoption('headless')
-    # browser = ''
+
     if browser_name == "chrome":
         print("\nstart chrome browser for test..")
         # Чтобы указать язык браузера, использую класс Options и метод add_experimental_option
@@ -60,4 +60,6 @@ def browser(request):
 # --browser_name= (firefox or chrome)
 # --language=ru (default='en')
 # --headless=true (default='None')
+
+# pytest -v -s  --tb=line --reruns 1  --browser_name=chrome --language=ru --headless=true   test_product_page.py
 
